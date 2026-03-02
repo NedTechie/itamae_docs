@@ -50,6 +50,10 @@ In-depth guides for working with Itamae.
 
 See [all examples]({{ '/docs/examples/' | relative_url }}) for complete recipes with directory structures, node attributes, and templates.
 
+## ❓ FAQ
+
+Common questions and answers about Itamae -- see the full [FAQ page]({{ '/docs/faq/' | relative_url }}).
+
 ## ⚡ Quick Reference
 
 ### 📋 Resource Cheat Sheet
