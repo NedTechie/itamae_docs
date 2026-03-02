@@ -1,29 +1,49 @@
 ---
-title: service
+title: "🔄 service"
 ---
 
-Manage system services (start, stop, enable, disable, restart, reload).
+# 🔄 service
 
-## Actions
+Manage system services — start, stop, enable, disable, restart, reload.
+
+## ⚡ Actions
 
 | Action | Description |
 |--------|-------------|
-| `:start` | Start the service |
-| `:stop` | Stop the service |
-| `:restart` | Restart the service |
-| `:reload` | Reload the service configuration |
-| `:enable` | Enable the service to start on boot |
-| `:disable` | Disable the service from starting on boot |
-| `:nothing` | Do nothing (default; use with notifications) |
+| `:nothing` | Do nothing **(default)** — use with notifications |
+| `:start` | Start the service (only if not running) |
+| `:stop` | Stop the service (only if running) |
+| `:restart` | Restart the service (always runs) |
+| `:reload` | Reload the service config (only if running) |
+| `:enable` | Enable the service at boot (only if not enabled) |
+| `:disable` | Disable the service at boot (only if enabled) |
 
-## Attributes
+> ⚠️ **Note:** The default action is `:nothing`, not `:start`. This is intentional — services are typically used as notification targets. You must explicitly set `action` if you want the service to start/enable.
+
+## 📋 Attributes
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `name` | String | Resource name | Service name |
-| `provider` | Symbol | -- | Service provider (`:systemd`, `:upstart`, etc.) |
+| `name` | String | Resource name | Service name (auto-set from resource name) |
+| `provider` | Symbol | — | Service provider (`:systemd`, `:upstart`, etc.) |
 
-## Examples
+> 💡 When `provider` is set, Itamae appends `_under_<provider>` to all specinfra method calls. For example, with `provider :systemd`, it calls `check_service_is_running_under_systemd` instead of `check_service_is_running`.
+
+## 🔍 How It Works
+
+1. **Query** — Checks if the service is currently running and enabled
+2. **Compare** — Determines which state changes are needed
+3. **Execute** — Runs only the necessary operations:
+   - `:start` and `:stop` are conditional (check state first)
+   - `:restart` always runs unconditionally
+   - `:reload` only runs if the service is currently running
+   - `:enable` and `:disable` are conditional (check state first)
+
+## 🔬 Dry-Run Behavior
+
+Running and enabled states are queried from the system. You see which services would start, stop, enable, or disable. No service state changes are applied.
+
+## 📖 Examples
 
 ### Enable and start a service
 
@@ -63,7 +83,7 @@ service 'apache2' do
 end
 ```
 
-### Reload without restart
+### Reload without restart (via subscribes)
 
 ```ruby
 service 'nginx' do
@@ -71,3 +91,13 @@ service 'nginx' do
   subscribes :reload, 'template[/etc/nginx/conf.d/app.conf]'
 end
 ```
+
+### Multiple actions in sequence
+
+```ruby
+service 'app' do
+  action [:enable, :start]
+end
+```
+
+> 💡 Actions in an array are executed in order. `[:enable, :start]` first enables the service, then starts it.

@@ -1,10 +1,10 @@
 ---
-title: Handlers
+title: "📡 Handlers"
 ---
 
 Handlers receive events during recipe execution for logging, monitoring, and integration with external systems.
 
-## Configuration
+## ⚙️ Configuration
 
 Configure handlers in a YAML config file:
 
@@ -20,9 +20,9 @@ handlers:
 itamae local -c itamae.yml recipe.rb
 ```
 
-## Built-in Handlers
+## 📦 Built-in Handlers
 
-### Debug Handler
+### 🐛 Debug Handler
 
 Logs all events to stdout. Useful for development and troubleshooting.
 
@@ -31,7 +31,7 @@ handlers:
   - type: debug
 ```
 
-### JSON Handler
+### 📄 JSON Handler
 
 Writes events as JSON lines to a file. Useful for log aggregation and analysis.
 
@@ -41,7 +41,7 @@ handlers:
     path: /var/log/itamae/events.jsonl
 ```
 
-### Fluentd Handler
+### 🔄 Fluentd Handler
 
 Sends events to a Fluentd collector. Useful for centralized monitoring.
 
@@ -55,7 +55,7 @@ handlers:
 
 > Requires the `fluent-logger` gem to be installed.
 
-## Event Types
+## 📊 Event Types
 
 Handlers receive events throughout the recipe lifecycle:
 
@@ -74,7 +74,7 @@ Handlers receive events throughout the recipe lifecycle:
 | `attribute_changed` | Resource attribute was modified |
 | `file_content_changed` | File content diff detected |
 
-## Custom Handlers
+## 🛠️ Custom Handlers
 
 Create a custom handler by inheriting from `Itamae::Handler::Base`:
 

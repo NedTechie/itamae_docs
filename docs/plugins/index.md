@@ -1,14 +1,14 @@
 ---
-title: Plugins
+title: "🔌 Plugins"
 ---
 
 Itamae supports two types of plugins distributed as Ruby gems: **recipe plugins** and **resource plugins**.
 
-## Recipe Plugins
+## 📖 Recipe Plugins
 
 Recipe plugins package reusable recipes as gems.
 
-### Naming Convention
+### 🏷️ Naming Convention
 
 Gem name must follow the pattern:
 
@@ -18,7 +18,7 @@ itamae-plugin-recipe-<name>
 
 Example: `itamae-plugin-recipe-nginx`
 
-### Gem Structure
+### 📁 Gem Structure
 
 ```
 lib/
@@ -31,7 +31,7 @@ lib/
         nginx.rb         # fallback if nginx/ directory doesn't exist
 ```
 
-### Usage
+### ▶️ Usage
 
 Add the gem to your `Gemfile`:
 
@@ -48,7 +48,7 @@ include_recipe 'nginx::ssl'      # loads ssl.rb
 
 > Namespaced inclusion (`name::recipe`) requires Itamae v1.5.2+.
 
-## Resource Plugins
+## 🧱 Resource Plugins
 
 Resource plugins add custom resource types.
 
@@ -62,7 +62,7 @@ Itamae::Plugin::Resource::FooBar
 
 This makes a `foo_bar` resource available in recipes.
 
-### Creating a Resource Plugin
+### 🛠️ Creating a Resource Plugin
 
 ```ruby
 # lib/itamae/plugin/resource/foo_bar.rb
@@ -98,7 +98,7 @@ foo_bar 'my_resource' do
 end
 ```
 
-### Reference Implementation
+### 📚 Reference Implementation
 
 Examine the built-in resources in the `lib/itamae/resource/` directory for examples of how to implement custom resources:
 
@@ -107,7 +107,7 @@ Examine the built-in resources in the `lib/itamae/resource/` directory for examp
 - Action methods named `action_<name>`
 - Difference reporting for attribute changes
 
-## Finding Plugins
+## 🔍 Finding Plugins
 
 Search for Itamae plugins on [RubyGems.org](https://rubygems.org/search?query=itamae-plugin):
 
@@ -115,7 +115,7 @@ Search for Itamae plugins on [RubyGems.org](https://rubygems.org/search?query=it
 gem search itamae-plugin
 ```
 
-## Creating Your Own Plugin
+## 🏗️ Creating Your Own Plugin
 
 1. Create a new gem:
 

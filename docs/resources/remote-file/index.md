@@ -1,40 +1,52 @@
 ---
-title: remote_file
+title: "📤 remote_file"
 ---
 
-Upload files from the local machine (where Itamae runs) to the target system.
+# 📤 remote_file
 
-## Actions
+Upload files from the local machine (where Itamae runs) to the target system. Inherits from [`file`]({{ '/docs/resources/file/' | relative_url }}).
+
+## ⚡ Actions
 
 | Action | Description |
 |--------|-------------|
-| `:create` | Upload and create/update the file (default) |
+| `:create` | Upload and create/update the file **(default)** |
 | `:delete` | Remove the file |
 | `:edit` | Download, modify with a block, then upload |
 | `:nothing` | Do nothing (use with notifications) |
 
-## Attributes
+## 📋 Attributes
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `path` | String | Resource name | Destination path on the target |
 | `source` | String or Symbol | `:auto` | Source file path (relative to `files/` directory) |
-| `mode` | String | -- | File permissions |
-| `owner` | String | -- | File owner |
-| `group` | String | -- | File group |
-| `content` | String | -- | Direct content (bypasses source file) |
-| `sensitive` | Boolean | -- | Hide content diff in output |
-| `block` | Proc | -- | Block for `:edit` action |
+| `mode` | String | — | File permissions |
+| `owner` | String | — | File owner |
+| `group` | String | — | File group |
+| `content` | String | — | Direct content (bypasses source file) |
+| `sensitive` | Boolean | `false` | Hide content diff in output 🔒 |
+| `block` | Proc | — | Block for `:edit` action |
 
-## Auto Source Resolution
+> 💡 Inherited from `file`: `path`, `content`, `mode`, `owner`, `group`, `sensitive`, `block`.
+
+## 🔎 Auto Source Resolution
 
 When `source` is `:auto` (the default), Itamae searches for the source file relative to the recipe. For a destination path `/foo/bar/baz.conf`, it checks:
 
-1. `files/foo/bar/baz.conf` (recommended)
-2. `files/bar/baz.conf`
-3. `files/baz.conf`
+| Priority | Search Path |
+|----------|-------------|
+| 1️⃣ | `files/foo/bar/baz.conf` |
+| 2️⃣ | `files/bar/baz.conf` |
+| 3️⃣ | `files/baz.conf` |
 
-## Examples
+> ⚠️ Raises `SourceNotFoundError` if no matching file is found with `:auto` source.
+
+## 🔬 Dry-Run Behavior
+
+The source file content is uploaded to a temp path for comparison. A unified diff is shown. The actual file is not moved into place.
+
+## 📖 Examples
 
 ### Upload a configuration file
 
@@ -65,4 +77,20 @@ remote_file '/usr/local/bin/deploy.sh' do
   owner 'deploy'
   group 'deploy'
 end
+```
+
+### Notify on change
+
+```ruby
+remote_file '/etc/app/config.yml' do
+  source 'config/app.yml'
+  mode '0644'
+  notifies :restart, 'service[app]'
+end
+```
+
+## 🧬 Inheritance Chain
+
+```
+file → remote_file → template
 ```

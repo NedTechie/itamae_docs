@@ -1,35 +1,39 @@
 ---
-title: template
+title: "📝 template"
 ---
 
-Render ERB templates and manage the resulting files on the target system.
+# 📝 template
 
-## Actions
+Render ERB templates and manage the resulting files on the target system. Inherits from [`remote_file`]({{ '/docs/resources/remote-file/' | relative_url }}) → [`file`]({{ '/docs/resources/file/' | relative_url }}).
+
+## ⚡ Actions
 
 | Action | Description |
 |--------|-------------|
-| `:create` | Render and create/update the file (default) |
+| `:create` | Render and create/update the file **(default)** |
 | `:delete` | Remove the file |
 | `:edit` | Download, modify with a block, then upload |
 | `:nothing` | Do nothing (use with notifications) |
 
-## Attributes
+## 📋 Attributes
 
 | Attribute | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `path` | String | Resource name | Destination file path |
 | `source` | String or Symbol | `:auto` | Template source file (relative to `templates/` directory) |
-| `variables` | Hash | `{}` | Variables available in the template |
-| `mode` | String | -- | File permissions |
-| `owner` | String | -- | File owner |
-| `group` | String | -- | File group |
-| `content` | String | -- | Direct content (bypasses template) |
-| `sensitive` | Boolean | -- | Hide content diff in output |
-| `block` | Proc | -- | Block for `:edit` action |
+| `variables` | Hash | `{}` | Variables available as `@var` in the template |
+| `mode` | String | — | File permissions (e.g., `'0644'`) |
+| `owner` | String | — | File owner |
+| `group` | String | — | File group |
+| `content` | String | — | Direct content (bypasses template rendering) |
+| `sensitive` | Boolean | `false` | Hide content diff in output 🔒 |
+| `block` | Proc | — | Block for `:edit` action |
 
-## Template Variables
+> 💡 Inherited from `file`: `path`, `content`, `mode`, `owner`, `group`, `sensitive`, `block`. Inherited from `remote_file`: `source`.
 
-Variables passed via the `variables` attribute become instance variables in the template:
+## 🎨 Template Variables
+
+Variables passed via the `variables` attribute become **instance variables** (`@var`) in the template:
 
 ```ruby
 template '/etc/app.conf' do
@@ -48,24 +52,32 @@ port = <%= @port %>
 workers = <%= @workers %>
 ```
 
-The `node` object is also available directly:
+The `node` object is also directly available:
 
 ```erb
 hostname = <%= node[:hostname] %>
 ```
 
-## Auto Source Resolution
+> ⚙️ Templates use `ERB.new(template, trim_mode: '-')`, so you can use `<%-` and `-%>` for whitespace control.
 
-When `source` is `:auto` (the default), Itamae searches for the template relative to the recipe file. For a destination path `/foo/bar/baz.conf`, it checks:
+## 🔎 Auto Source Resolution
 
-1. `templates/foo/bar/baz.conf.erb`
-2. `templates/foo/bar/baz.conf`
-3. `templates/bar/baz.conf.erb`
-4. `templates/bar/baz.conf`
-5. `templates/baz.conf.erb`
-6. `templates/baz.conf`
+When `source` is `:auto` (the default), Itamae searches for the template relative to the recipe file. For a destination path `/foo/bar/baz.conf`, it checks (with `.erb` extension tried first):
 
-## Examples
+| Priority | Search Path |
+|----------|-------------|
+| 1️⃣ | `templates/foo/bar/baz.conf.erb` |
+| 2️⃣ | `templates/foo/bar/baz.conf` |
+| 3️⃣ | `templates/bar/baz.conf.erb` |
+| 4️⃣ | `templates/bar/baz.conf` |
+| 5️⃣ | `templates/baz.conf.erb` |
+| 6️⃣ | `templates/baz.conf` |
+
+## 🔬 Dry-Run Behavior
+
+In [dry-run mode]({{ '/docs/dry-run/' | relative_url }}), the ERB template is **fully rendered** and uploaded as a temp file. A unified diff is shown against the existing file, so you see the **exact rendered output** that would be written. The file is not moved into place.
+
+## 📖 Examples
 
 ### Basic template
 
@@ -117,3 +129,22 @@ template '/etc/app/database.yml' do
   owner 'app'
 end
 ```
+
+### Conditional content with ERB
+
+```erb
+<% if @ssl_enabled %>
+listen 443 ssl;
+ssl_certificate <%= @ssl_cert %>;
+<% else %>
+listen 80;
+<% end %>
+```
+
+## 🧬 Inheritance Chain
+
+```
+file → remote_file → template
+```
+
+Template inherits all attributes and behavior from `file` and `remote_file`.

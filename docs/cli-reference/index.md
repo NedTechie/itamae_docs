@@ -1,10 +1,10 @@
 ---
-title: CLI Reference
+title: "⌨️ CLI Reference"
 ---
 
 Itamae provides several commands for running recipes and scaffolding projects.
 
-## Commands
+## 🔧 Commands
 
 ### `itamae local`
 
@@ -96,7 +96,7 @@ itamae destroy role NAME
 
 Print the Itamae version.
 
-## Global Options
+## 🌐 Global Options
 
 Available for `local`, `ssh`, `docker`, and `jail` commands:
 
@@ -104,7 +104,7 @@ Available for `local`, `ssh`, `docker`, and `jail` commands:
 |--------|-------------|
 | `-j, --node_json PATH` | Load node attributes from JSON (repeatable) |
 | `-y, --node_yaml PATH` | Load node attributes from YAML (repeatable) |
-| `-n, --dry_run` | Preview changes without applying |
+| `-n, --dry_run` | 🔍 Preview changes without applying (see [Dry-Run Mode]({{ '/docs/dry-run/' | relative_url }})) |
 | `-l, --log_level LEVEL` | `debug`, `info` (default), `warn`, `error`, `fatal` |
 | `--color` | Enable/disable colored output (default: true) |
 | `--shell PATH` | Shell to use (default: `/bin/sh`) |
@@ -116,15 +116,15 @@ Available for `local`, `ssh`, `docker`, and `jail` commands:
 | `--profile PATH` | Save profiling data as JSON (experimental) |
 | `--ohai` | Load system info via Ohai (deprecated) |
 
-## Exit Codes
+## 🚦 Exit Codes
 
 | Code | Meaning |
 |------|---------|
-| `0` | Success (no changes, or changes applied without `--detailed_exitcode`) |
-| `1` | Execution failed |
-| `2` | Success with changes (only with `--detailed_exitcode`) |
+| `0` | ✅ Success (no changes, or changes applied without `--detailed_exitcode`) |
+| `1` | ❌ Execution failed |
+| `2` | ⚠️ Success with changes (only with `--detailed_exitcode`) |
 
-## Configuration File
+## ⚙️ Configuration File
 
 You can store options in a YAML configuration file and pass it with `-c`:
 
@@ -142,7 +142,7 @@ handlers:
 itamae local -c itamae.yml recipe.rb
 ```
 
-## Multiple Node Attribute Files
+## 📋 Multiple Node Attribute Files
 
 Load and deep-merge multiple attribute files. Later files take precedence:
 
@@ -150,7 +150,7 @@ Load and deep-merge multiple attribute files. Later files take precedence:
 itamae local -j base.json -j web.json -y overrides.yml recipe.rb
 ```
 
-## Profiling
+## 📊 Profiling
 
 Generate a JSON profile of command execution times:
 
@@ -167,7 +167,7 @@ Output format:
 ]
 ```
 
-## Dependency Graph
+## 🔀 Dependency Graph
 
 Generate a DOT graph of recipe dependencies:
 

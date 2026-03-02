@@ -1,10 +1,10 @@
 ---
-title: Notifications
+title: "🔔 Notifications"
 ---
 
 Notifications allow resources to trigger actions on other resources when they make changes. This is the primary mechanism for restarting services after configuration changes.
 
-## `notifies`
+## 📣 `notifies`
 
 Trigger an action on another resource when this resource changes:
 
@@ -19,14 +19,14 @@ service 'nginx' do
 end
 ```
 
-### Syntax
+### 📝 Syntax
 
 ```ruby
 notifies :action, 'resource_type[resource_name]'
 notifies :action, 'resource_type[resource_name]', :timing
 ```
 
-### Timing
+### ⏱️ Timing
 
 | Timing | Description |
 |--------|-------------|
@@ -34,7 +34,7 @@ notifies :action, 'resource_type[resource_name]', :timing
 | `:delay` | Alias for `:delayed` |
 | `:immediately` | Run right after the notifying resource executes |
 
-### Delayed (default)
+### ⏳ Delayed (default)
 
 ```ruby
 template '/etc/nginx/nginx.conf' do
@@ -46,7 +46,7 @@ end
 
 If multiple resources notify the same target with `:delayed` timing, the action runs only once at the end.
 
-### Immediate
+### ⚡ Immediate
 
 ```ruby
 package 'nginx' do
@@ -54,7 +54,7 @@ package 'nginx' do
 end
 ```
 
-## `subscribes`
+## 👀 `subscribes`
 
 The inverse of `notifies` -- a resource watches another resource and acts when it changes:
 
@@ -76,9 +76,9 @@ subscribes :action, 'resource_type[resource_name]'
 subscribes :action, 'resource_type[resource_name]', :timing
 ```
 
-## Common Patterns
+## 📖 Common Patterns
 
-### Restart service on config change
+### 🔄 Restart service on config change
 
 ```ruby
 service 'app' do
@@ -92,7 +92,7 @@ template '/etc/app/config.yml' do
 end
 ```
 
-### Reload instead of restart
+### ♻️ Reload instead of restart
 
 ```ruby
 template '/etc/nginx/conf.d/site.conf' do
@@ -101,7 +101,7 @@ template '/etc/nginx/conf.d/site.conf' do
 end
 ```
 
-### Chain multiple notifications
+### 🔗 Chain multiple notifications
 
 ```ruby
 git '/opt/app' do
@@ -121,7 +121,7 @@ service 'app' do
 end
 ```
 
-### Daemon reload for systemd
+### 🔧 Daemon reload for systemd
 
 ```ruby
 execute 'systemctl daemon-reload' do
@@ -135,7 +135,7 @@ template '/etc/systemd/system/app.service' do
 end
 ```
 
-## Resource Reference Format
+## 🏷️ Resource Reference Format
 
 Notifications reference resources using the format:
 

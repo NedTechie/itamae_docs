@@ -1,12 +1,12 @@
 ---
-title: Node Attributes
+title: "📋 Node Attributes"
 ---
 
 Node attributes provide host-specific data to your recipes. They allow you to write generic recipes that adapt to different environments.
 
-## Loading Attributes
+## 📥 Loading Attributes
 
-### From JSON
+### 📄 From JSON
 
 ```bash
 itamae local --node-json node.json recipe.rb
@@ -22,7 +22,7 @@ itamae local --node-json node.json recipe.rb
 }
 ```
 
-### From YAML
+### 📝 From YAML
 
 ```bash
 itamae local --node-yaml node.yml recipe.rb
@@ -35,7 +35,7 @@ app:
   workers: 4
 ```
 
-### Multiple files
+### 📚 Multiple files
 
 Load and deep-merge multiple attribute files. Later files take precedence:
 
@@ -43,7 +43,7 @@ Load and deep-merge multiple attribute files. Later files take precedence:
 itamae local -j base.json -j web.json -y overrides.yml recipe.rb
 ```
 
-## Accessing Attributes
+## 🔑 Accessing Attributes
 
 Use the `node` object in recipes:
 
@@ -65,7 +65,7 @@ hostname = <%= node[:hostname] %>
 port = <%= node[:app][:port] %>
 ```
 
-### Flexible access
+### 🔀 Flexible access
 
 Node attributes use `Hashie::Mash`, so you can access them with symbols, strings, or method syntax:
 
@@ -75,7 +75,7 @@ node['app']['port']    # string keys
 node.app.port          # method syntax
 ```
 
-## Validation
+## ✅ Validation
 
 Validate attributes before recipe execution to catch configuration errors early:
 
@@ -104,7 +104,7 @@ Validation types:
 
 When validation fails, provisioning halts with an error message.
 
-## Host Inventory
+## 📊 Host Inventory
 
 Itamae automatically collects system facts from the target host. These are merged into node attributes:
 
@@ -115,7 +115,7 @@ node[:platform_version]   # "22.04", "9", etc.
 
 Host inventory data is lazy-loaded when first accessed.
 
-## Ohai Integration (Deprecated)
+## ⚠️ Ohai Integration (Deprecated)
 
 Load comprehensive system data via Ohai:
 

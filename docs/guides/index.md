@@ -1,10 +1,10 @@
 ---
-title: Guides
+title: "📚 Guides"
 ---
 
 In-depth guides for working with Itamae.
 
-## Core Concepts
+## 🧠 Core Concepts
 
 | Guide | Description |
 |-------|-------------|
@@ -14,7 +14,7 @@ In-depth guides for working with Itamae.
 | [Notifications]({{ '/docs/notifications/' | relative_url }}) | Triggering actions between resources with notifies/subscribes |
 | [run_command]({{ '/docs/run-command/' | relative_url }}) | Executing commands and capturing output in recipes |
 
-## Infrastructure
+## 🏗️ Infrastructure
 
 | Guide | Description |
 |-------|-------------|
@@ -22,14 +22,14 @@ In-depth guides for working with Itamae.
 | [CLI Reference]({{ '/docs/cli-reference/' | relative_url }}) | All commands, options, and exit codes |
 | [Handlers]({{ '/docs/handlers/' | relative_url }}) | Event handlers for logging and monitoring |
 
-## Extending Itamae
+## 🔌 Extending Itamae
 
 | Guide | Description |
 |-------|-------------|
 | [Plugins]({{ '/docs/plugins/' | relative_url }}) | Creating and using recipe and resource plugins |
 | [Best Practices]({{ '/docs/best-practices/' | relative_url }}) | Recommended project structure and patterns |
 
-## Real-World Examples
+## 🌍 Real-World Examples
 
 | Example | Description |
 |---------|-------------|
@@ -50,9 +50,9 @@ In-depth guides for working with Itamae.
 
 See [all examples]({{ '/docs/examples/' | relative_url }}) for complete recipes with directory structures, node attributes, and templates.
 
-## Quick Reference
+## ⚡ Quick Reference
 
-### Resource Cheat Sheet
+### 📋 Resource Cheat Sheet
 
 ```ruby
 # Files & directories
@@ -81,7 +81,7 @@ remote_directory '/p' do source 'dir' end
 local_ruby_block 'n'  do block { puts 'hi' } end
 ```
 
-### Common Patterns
+### 🔄 Common Patterns
 
 ```ruby
 # Notify service on config change

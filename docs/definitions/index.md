@@ -1,10 +1,10 @@
 ---
-title: Definitions
+title: "🧩 Definitions"
 ---
 
 Definitions let you group multiple resources into a reusable, parameterized block -- similar to a lightweight custom resource.
 
-## Defining a Definition
+## 📝 Defining a Definition
 
 Use the `define` keyword at the top level of a recipe:
 
@@ -32,7 +32,7 @@ Inside the block, `params` is a hash containing:
 - `:name` -- the resource name passed when using the definition
 - Any keyword parameters you declared
 
-## Using a Definition
+## ▶️ Using a Definition
 
 Once defined, use it like any other resource:
 
@@ -46,9 +46,9 @@ install_and_enable_package 'redis'
 
 > A `define` must appear **before** it is used in the recipe. Define it at the top of the file or in an included recipe.
 
-## Practical Examples
+## 📖 Practical Examples
 
-### Application deployment pattern
+### 🚀 Application deployment pattern
 
 ```ruby
 define :deploy_app, user: 'deploy', port: 3000 do
@@ -83,7 +83,7 @@ end
 deploy_app 'worker'
 ```
 
-### Conditional package installation
+### 🔀 Conditional package installation
 
 ```ruby
 define :install_if_missing do
@@ -97,7 +97,7 @@ install_if_missing 'htop'
 install_if_missing 'jq'
 ```
 
-## Definitions vs. Resource Plugins
+## ⚖️ Definitions vs. Resource Plugins
 
 | Feature | Definitions | Resource Plugins |
 |---------|-------------|-----------------|

@@ -1,10 +1,10 @@
 ---
-title: Best Practices
+title: "✅ Best Practices"
 ---
 
 Itamae does not force a specific project structure. These are recommended patterns that work well as projects grow.
 
-## Directory Structure
+## 📁 Directory Structure
 
 Organize recipes into **cookbooks** (software-specific) and **roles** (server purpose):
 
@@ -38,7 +38,7 @@ Organize recipes into **cookbooks** (software-specific) and **roles** (server pu
 - **Cookbook** -- a collection of recipes managing specific software (nginx, PostgreSQL, Ruby)
 - **Role** -- represents a server's purpose (web, database, worker)
 
-### Role file
+### 🎭 Role file
 
 ```ruby
 # roles/web.rb
@@ -46,14 +46,14 @@ include_recipe '../cookbooks/nginx'
 include_recipe '../cookbooks/ruby'
 ```
 
-### Provisioning
+### ▶️ Provisioning
 
 ```bash
 itamae local roles/web.rb
 itamae ssh --host web01 -j nodes/web01.json roles/web.rb
 ```
 
-## Use `:auto` Source
+## 🔍 Use `:auto` Source
 
 Let Itamae find source files automatically instead of specifying explicit paths:
 
@@ -84,7 +84,7 @@ For path `/foo/bar/baz.conf`:
 5. `templates/baz.conf.erb`
 6. `templates/baz.conf`
 
-## Validate Node Attributes
+## ✔️ Validate Node Attributes
 
 Add validation at the top of cookbooks to catch misconfiguration early:
 
@@ -108,7 +108,7 @@ package 'nginx'
 # ...
 ```
 
-## Use Guards for Idempotency
+## 🛡️ Use Guards for Idempotency
 
 Make resources idempotent with `only_if` and `not_if`:
 
@@ -119,7 +119,7 @@ execute 'initialize database' do
 end
 ```
 
-## Use Notifications
+## 🔔 Use Notifications
 
 Avoid unconditional service restarts. Instead, notify services when their configuration changes:
 
@@ -140,7 +140,7 @@ template '/etc/nginx/nginx.conf' do
 end
 ```
 
-## Dry Run First
+## 🔎 Dry Run First
 
 Always preview changes before applying:
 
@@ -149,7 +149,7 @@ itamae local --dry-run roles/web.rb
 itamae local roles/web.rb
 ```
 
-## Use Detailed Exit Codes in CI
+## 🚦 Use Detailed Exit Codes in CI
 
 In CI/CD pipelines, use `--detailed_exitcode` to distinguish between "no changes" and "changes applied":
 
@@ -160,11 +160,11 @@ itamae local --detailed_exitcode roles/web.rb
 # Exit 2: changes applied successfully
 ```
 
-## Keep Recipes Small
+## 📐 Keep Recipes Small
 
 Split large recipes into focused cookbooks. Each cookbook should manage one piece of software or concern.
 
-## Use Node Attributes for Environment Differences
+## 🌍 Use Node Attributes for Environment Differences
 
 Avoid conditionals in recipes. Instead, parameterize differences via node attributes:
 

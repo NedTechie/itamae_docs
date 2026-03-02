@@ -1,10 +1,10 @@
 ---
-title: run_command
+title: "🔧 run_command"
 ---
 
 The `run_command` method executes shell commands on the target host and returns the result. It can be used in recipes, definitions, resource blocks, and `local_ruby_block` contexts.
 
-## Return Value
+## 📤 Return Value
 
 `run_command` returns a `Specinfra::CommandResult` with:
 
@@ -14,9 +14,9 @@ The `run_command` method executes shell commands on the target host and returns 
 | `stderr` | Standard error |
 | `exit_status` | Exit code (0 = success) |
 
-## Usage
+## 📖 Usage
 
-### In a recipe
+### 📄 In a recipe
 
 ```ruby
 result = run_command('echo -n Hello')
@@ -24,7 +24,7 @@ result.stdout       # => "Hello"
 result.exit_status  # => 0
 ```
 
-### In a definition
+### 🧩 In a definition
 
 ```ruby
 define :my_setup do
@@ -35,7 +35,7 @@ define :my_setup do
 end
 ```
 
-### In a resource block
+### 🧱 In a resource block
 
 ```ruby
 execute 'conditional command' do
@@ -44,7 +44,7 @@ execute 'conditional command' do
 end
 ```
 
-### In a local_ruby_block
+### 💻 In a local_ruby_block
 
 ```ruby
 local_ruby_block 'check kernel' do
@@ -55,11 +55,11 @@ local_ruby_block 'check kernel' do
 end
 ```
 
-## Error Handling
+## ❌ Error Handling
 
 By default, `run_command` raises an error if the command exits with a non-zero status. The error includes stdout and stderr for debugging.
 
-## Comparison with `execute` Resource
+## ⚖️ Comparison with `execute` Resource
 
 | Feature | `run_command` | `execute` resource |
 |---------|---------------|-------------------|

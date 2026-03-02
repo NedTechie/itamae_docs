@@ -1,10 +1,10 @@
 ---
-title: Writing Recipes
+title: "📖 Writing Recipes"
 ---
 
 Recipes are Ruby files that describe the desired state of your system using Itamae's resource DSL. Each recipe is executed in order, top to bottom.
 
-## Basic Structure
+## 🏗️ Basic Structure
 
 ```ruby
 # Install a package
@@ -25,7 +25,7 @@ file '/var/www/html/index.html' do
 end
 ```
 
-## Including Recipes
+## 📎 Including Recipes
 
 Include other recipe files using absolute or relative paths:
 
@@ -41,7 +41,7 @@ include_recipe '../cookbooks/nginx'
 # Loads ../cookbooks/nginx/default.rb
 ```
 
-### Including from Gems
+### 💎 Including from Gems
 
 Include recipes from installed gems (see [Plugins]({{ '/docs/plugins/' | relative_url }})):
 
@@ -50,7 +50,7 @@ include_recipe 'nginx'           # loads default.rb from gem
 include_recipe 'nginx::ssl'      # loads ssl.rb from gem
 ```
 
-## Passing Variables
+## 📦 Passing Variables
 
 Pass variables when including recipes:
 
@@ -60,9 +60,9 @@ include_recipe 'app' do
 end
 ```
 
-## Conditional Execution
+## 🔀 Conditional Execution
 
-### Guards
+### 🛡️ Guards
 
 Use `only_if` and `not_if` to conditionally execute resources:
 
@@ -79,7 +79,7 @@ end
 
 Guards execute shell commands on the target host. A zero exit status means the condition is true.
 
-### Multiple Actions
+### ⚡ Multiple Actions
 
 A resource can perform multiple actions:
 
@@ -89,7 +89,7 @@ service 'nginx' do
 end
 ```
 
-## Accessing Node Attributes
+## 📋 Accessing Node Attributes
 
 The `node` object provides access to attributes loaded from JSON/YAML files and host inventory:
 
@@ -104,7 +104,7 @@ template '/etc/myapp.conf' do
 end
 ```
 
-## Using `run_command`
+## 🔧 Using `run_command`
 
 Execute commands and capture results within recipes:
 
@@ -132,7 +132,7 @@ local_ruby_block 'conditional setup' do
 end
 ```
 
-## Node Validation
+## ✅ Node Validation
 
 Validate node attributes before recipe execution:
 
@@ -153,7 +153,7 @@ end
 
 When validation fails, provisioning halts with an error.
 
-## Recipe Execution Order
+## 🔢 Recipe Execution Order
 
 1. Recipes execute top to bottom
 2. `include_recipe` inserts the included recipe's resources at that point

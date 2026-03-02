@@ -1,12 +1,12 @@
 ---
-title: Real-World Examples
+title: "🌍 Real-World Examples"
 ---
 
-# Real-World Examples
+# 🌍 Real-World Examples
 
 Production-style Itamae recipes for common infrastructure tasks. Each example includes a complete directory structure, node attributes, recipe code, and templates.
 
-## Examples
+## 📖 Examples
 
 | Example | Description | Key Resources |
 |---------|-------------|---------------|
@@ -25,7 +25,7 @@ Production-style Itamae recipes for common infrastructure tasks. Each example in
 | [Jenkins CI]({{ '/docs/examples/jenkins-ci/' | relative_url }}) | CI/CD server with Java, plugins, and Nginx proxy | package, service, template, directory, execute, link |
 | [Multi-Tier Application]({{ '/docs/examples/multi-tier/' | relative_url }}) | Compose roles for a full web + app + db stack | Roles combining all the above |
 
-## How to Use These Examples
+## 🚀 How to Use These Examples
 
 1. **Copy the directory structure** into your Itamae project
 2. **Customize node attributes** in your JSON files for each host

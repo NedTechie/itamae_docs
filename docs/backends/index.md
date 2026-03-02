@@ -1,10 +1,10 @@
 ---
-title: Backends
+title: "🖥️ Backends"
 ---
 
 Itamae uses backends to abstract command execution and file transfer across different target environments. All backends use [Specinfra](https://github.com/mizzy/specinfra) under the hood.
 
-## Local Backend
+## 💻 Local Backend
 
 Execute commands directly on the local machine. No additional configuration needed.
 
@@ -17,7 +17,7 @@ Best for:
 - Development and testing
 - CI/CD pipelines
 
-## SSH Backend
+## 🔐 SSH Backend
 
 Execute commands on remote machines via SSH.
 
@@ -25,7 +25,7 @@ Execute commands on remote machines via SSH.
 itamae ssh --host web01.example.com recipe.rb
 ```
 
-### Options
+### ⚙️ Options
 
 | Option | Description |
 |--------|-------------|
@@ -38,7 +38,7 @@ itamae ssh --host web01.example.com recipe.rb
 | `--ask_password` | Prompt for password |
 | `--sudo` | Enable sudo (default: true) |
 
-### Vagrant Integration
+### 📦 Vagrant Integration
 
 Connect to Vagrant VMs automatically:
 
@@ -48,7 +48,7 @@ itamae ssh --vagrant --host default recipe.rb
 
 Itamae reads the Vagrant SSH config for the named VM.
 
-### SSH Config File
+### 📄 SSH Config File
 
 Use a custom SSH config:
 
@@ -56,7 +56,7 @@ Use a custom SSH config:
 itamae ssh --ssh_config ~/.ssh/custom_config --host myserver recipe.rb
 ```
 
-## Docker Backend
+## 🐳 Docker Backend
 
 Apply recipes to build Docker images. Itamae creates a container from a base image, applies recipes, then commits the result.
 
@@ -73,13 +73,13 @@ itamae docker --image ubuntu:22.04 --tag myapp:latest recipe.rb
 | `--tag` | Tag for the resulting image |
 | `--tls_verify_peer` | SSL verification (default: true) |
 
-### From an existing container
+### 🔄 From an existing container
 
 ```bash
 itamae docker --container abc123 --tag myapp:configured recipe.rb
 ```
 
-## Jail Backend (FreeBSD)
+## 🔒 Jail Backend (FreeBSD)
 
 Execute commands inside a FreeBSD jail:
 
@@ -91,7 +91,7 @@ itamae jail --jail_name myjail recipe.rb
 |--------|-------------|
 | `--jail_name` | Jail hostname |
 
-## Backend Methods
+## 🔧 Backend Methods
 
 All backends provide these operations to recipes and resources:
 
@@ -104,7 +104,7 @@ All backends provide these operations to recipes and resources:
 | `send_directory(src, dst)` | Upload a directory to the target |
 | `host_inventory` | Get system inventory facts |
 
-## Host Inventory
+## 📊 Host Inventory
 
 Access system facts via `node`:
 

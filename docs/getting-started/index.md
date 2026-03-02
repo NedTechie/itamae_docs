@@ -1,8 +1,8 @@
 ---
-title: Getting Started
+title: "🚀 Getting Started"
 ---
 
-## Installation
+## 📥 Installation
 
 Add Itamae to your `Gemfile`:
 
@@ -22,7 +22,7 @@ Or install directly:
 gem install itamae
 ```
 
-## Your First Recipe
+## ✨ Your First Recipe
 
 Create a file called `recipe.rb`:
 
@@ -36,7 +36,7 @@ service 'nginx' do
 end
 ```
 
-## Running Recipes
+## ▶️ Running Recipes
 
 ### Local Execution
 
@@ -78,15 +78,18 @@ Build a Docker image with your recipes applied:
 itamae docker --image ubuntu:22.04 --tag myapp:latest recipe.rb
 ```
 
-## Dry Run
+## 🔍 Dry Run
 
-Preview changes without applying them:
+Preview changes without applying them — see exactly what would change without risk:
 
 ```bash
 itamae local --dry-run recipe.rb
+itamae ssh -n -h web01.example.com recipe.rb  # -n is the short flag
 ```
 
-## Node Attributes
+> 💡 Dry-run shows full diffs for file/template changes and attribute comparisons for all resources. See the [Dry-Run Mode guide]({{ '/docs/dry-run/' | relative_url }}) for details on what each resource type shows.
+
+## 📋 Node Attributes
 
 Pass host-specific data via JSON or YAML files:
 
@@ -113,7 +116,7 @@ template '/etc/app.conf' do
 end
 ```
 
-## Project Scaffolding
+## 🏗️ Project Scaffolding
 
 Generate a new project:
 
@@ -133,8 +136,10 @@ Generate a role:
 itamae generate role web
 ```
 
-## Next Steps
+## 🎯 Next Steps
 
-- [Writing Recipes]({{ '/docs/recipes/' | relative_url }}) -- Learn the recipe DSL in depth
-- [Resources]({{ '/docs/resources/' | relative_url }}) -- Explore all 15 built-in resources
-- [Best Practices]({{ '/docs/best-practices/' | relative_url }}) -- Recommended project structure and patterns
+- 📖 [Writing Recipes]({{ '/docs/recipes/' | relative_url }}) — Learn the recipe DSL in depth
+- 🧱 [Resources]({{ '/docs/resources/' | relative_url }}) — Explore all 15 built-in resources
+- 🔍 [Dry-Run Mode]({{ '/docs/dry-run/' | relative_url }}) — Understand how to preview changes safely
+- ✅ [Best Practices]({{ '/docs/best-practices/' | relative_url }}) — Recommended project structure and patterns
+- 🌍 [Real-World Examples]({{ '/docs/examples/' | relative_url }}) — Production-ready recipes for common DevOps tasks
