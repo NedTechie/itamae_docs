@@ -29,6 +29,21 @@ In-depth guides for working with Itamae.
 | [Plugins]({{ '/docs/plugins/' | relative_url }}) | Creating and using recipe and resource plugins |
 | [Best Practices]({{ '/docs/best-practices/' | relative_url }}) | Recommended project structure and patterns |
 
+## Real-World Examples
+
+| Example | Description |
+|---------|-------------|
+| [Nginx Web Server]({{ '/docs/examples/nginx/' | relative_url }}) | Install and configure Nginx with virtual hosts and SSL |
+| [PostgreSQL Database]({{ '/docs/examples/postgresql/' | relative_url }}) | Set up PostgreSQL with users, databases, and backups |
+| [Ruby App Deployment]({{ '/docs/examples/ruby-app/' | relative_url }}) | Deploy a Ruby app with Puma and systemd |
+| [Docker Host]({{ '/docs/examples/docker-host/' | relative_url }}) | Provision a Docker host with daemon configuration |
+| [User Management]({{ '/docs/examples/user-management/' | relative_url }}) | Manage users, groups, SSH keys, and sudoers |
+| [Monitoring Stack]({{ '/docs/examples/monitoring/' | relative_url }}) | Deploy monitoring agents with health checks |
+| [Security Hardening]({{ '/docs/examples/security/' | relative_url }}) | SSH hardening, firewall rules, and audit logging |
+| [Multi-Tier Application]({{ '/docs/examples/multi-tier/' | relative_url }}) | Compose roles for a full web + app + db stack |
+
+See [all examples]({{ '/docs/examples/' | relative_url }}) for complete recipes with directory structures, node attributes, and templates.
+
 ## Quick Reference
 
 ### Resource Cheat Sheet

@@ -8,3 +8,8 @@ group :docs do
   gem 'jekyll-seo-tag'
   gem 'kramdown-parser-gfm'
 end
+
+group :test do
+  gem 'minitest', '~> 5.0'
+  gem 'rake'
+end

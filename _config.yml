@@ -26,3 +26,5 @@ exclude:
   - Gemfile.lock
   - vendor
   - .bundle
+  - Rakefile
+  - test
