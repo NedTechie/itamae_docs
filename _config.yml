@@ -1,6 +1,6 @@
 title: Itamae Documentation
 description: Comprehensive documentation for Itamae - a lightweight, Chef-inspired configuration management tool for Ruby
-baseurl: "/itamae-docs"
+baseurl: ""
 url: "https://nedtechie.github.io"
 remote_theme: pages-themes/cayman@v0.2.0
 
