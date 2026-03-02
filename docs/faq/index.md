@@ -73,6 +73,96 @@ end
 
 ---
 
+## 🖥️ Platform Detection
+
+### How do I install different packages per OS?
+
+Use `node[:platform]` in a `case` statement. Itamae auto-detects the target OS via [Specinfra](https://github.com/mizzy/specinfra) and returns a lowercase string:
+
+```ruby
+case node[:platform]
+when 'debian', 'ubuntu', 'mint'
+  packages = %w(libpcre3 libpcre3-dev)
+else
+  packages = %w(pcre pcre-devel)
+end
+
+packages.each do |pkg|
+  package pkg
+end
+```
+
+> 💡 `node[:platform]` is lazy-loaded from the target host's `/etc/os-release` (or equivalent). It is available at the recipe top level, inside resource blocks, definitions, and templates.
+
+### What values does `node[:platform]` return?
+
+| Family | `node[:platform]` value |
+|--------|------------------------|
+| Debian / Ubuntu / Mint | `'debian'`, `'ubuntu'`, `'mint'` |
+| RHEL / CentOS / Fedora / Amazon | `'redhat'`, `'fedora'`, `'amazon'` |
+| SUSE / openSUSE | `'suse'`, `'opensuse'` |
+| Alpine | `'alpine'` |
+| Arch | `'arch'` |
+| Gentoo | `'gentoo'` |
+| FreeBSD / OpenBSD | `'freebsd'`, `'openbsd'` |
+| macOS | `'darwin'` |
+| NixOS | `'nixos'` |
+
+### Is `node[:platform_version]` available?
+
+Yes. It returns the OS release version as a string:
+
+```ruby
+# e.g., "22.04" on Ubuntu 22.04, "9" on Debian 9
+node[:platform_version]
+```
+
+Combine both for precise control:
+
+```ruby
+case node[:platform]
+when 'ubuntu'
+  if node[:platform_version].to_f >= 22.04
+    package 'php8.1-fpm'
+  else
+    package 'php7.4-fpm'
+  end
+when 'redhat'
+  package 'php-fpm'
+end
+```
+
+### What other host inventory data is available?
+
+Itamae exposes system facts from [Specinfra](https://github.com/mizzy/specinfra) through the `node` object. All values are lazy-loaded on first access:
+
+| Key | Example | Description |
+|-----|---------|-------------|
+| `node[:platform]` | `'ubuntu'` | OS family |
+| `node[:platform_version]` | `'22.04'` | OS release version |
+| `node[:platform_codename]` | `'jammy'` | Release codename |
+| `node[:hostname]` | `'web01'` | System hostname |
+| `node[:fqdn]` | `'web01.example.com'` | Fully qualified domain name |
+| `node[:memory][:total]` | `'7864228kB'` | Total memory |
+| `node[:cpu][:total]` | `4` | CPU count |
+| `node[:virtualization]` | `'docker'` | Virtualization type |
+| `node[:kernel]` | `{...}` | Kernel information |
+
+```ruby
+# Use in recipes
+template '/etc/nginx/nginx.conf' do
+  variables(
+    workers: node[:cpu][:total],
+    hostname: node[:hostname]
+  )
+end
+
+# Use in templates
+# worker_processes <%= node[:cpu][:total] %>;
+```
+
+---
+
 ## 🔄 Services
 
 ### Why doesn't my service start?
