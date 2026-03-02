@@ -40,6 +40,12 @@ In-depth guides for working with Itamae.
 | [User Management]({{ '/docs/examples/user-management/' | relative_url }}) | Manage users, groups, SSH keys, and sudoers |
 | [Monitoring Stack]({{ '/docs/examples/monitoring/' | relative_url }}) | Deploy monitoring agents with health checks |
 | [Security Hardening]({{ '/docs/examples/security/' | relative_url }}) | SSH hardening, firewall rules, and audit logging |
+| [Redis Cache]({{ '/docs/examples/redis/' | relative_url }}) | In-memory data store with persistence and kernel tuning |
+| [Let's Encrypt SSL]({{ '/docs/examples/letsencrypt/' | relative_url }}) | TLS certificates with certbot and auto-renewal |
+| [Log Management]({{ '/docs/examples/log-management/' | relative_url }}) | Centralized rsyslog forwarding and logrotate |
+| [MySQL Database]({{ '/docs/examples/mysql/' | relative_url }}) | MySQL server with users, backups, and tuning |
+| [HAProxy Load Balancer]({{ '/docs/examples/haproxy/' | relative_url }}) | Reverse proxy with health checks and stats dashboard |
+| [Jenkins CI]({{ '/docs/examples/jenkins-ci/' | relative_url }}) | CI/CD server with Java, plugins, and Nginx proxy |
 | [Multi-Tier Application]({{ '/docs/examples/multi-tier/' | relative_url }}) | Compose roles for a full web + app + db stack |
 
 See [all examples]({{ '/docs/examples/' | relative_url }}) for complete recipes with directory structures, node attributes, and templates.
